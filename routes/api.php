@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('v1/data', 'dataController@index');
+Route::post('/callback','dataController@show');
