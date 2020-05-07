@@ -25,8 +25,8 @@ class dataController extends Controller
                 "app_id"=>"b2eef31d-d499-44b3-8071-762fc91e8eb0",
                 "included_segments"=>["All"],
                 "data"=>["foo"=>"bar"],
-                "contents"=>["zh-Hant"=>$params['content']],
-                "headings"=>["zh-Hant"=>$params['title']]
+                "contents"=>["en"=>$params['content']],
+                "headings"=>["en"=>$params['title']]
             ]
         ]);
     }
