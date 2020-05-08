@@ -5,9 +5,36 @@ use App\Help\JsonResponse;
 use Illuminate\Http\Request;
 use App\Model\Data;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Log;
 
 class dataController extends Controller
 {
+    public function pyShow(Request $request){
+        $params = $request->getContent();
+        $params = json_decode($params,TRUE);
+        #$params = json_encode($params);
+        #Log::alert($params);
+        
+        foreach($params as $key=>$value){
+            #Log::alert($value['name']);
+
+            /*
+            Data::insert('insert into ad_events (name, enabled, type, currency, click, exposure, click_rate, cpc_average, cost, conversion, conversion_after_view,single_conversion_cost,conversion_rate) values 
+            (?,?,?,?,?,?,?,?,?,?,?,?,?)', 
+            [$value['name'], $value['enabled'],$value['type'],$value['currency'],$value['click'],$value['exposure'],$value['click_rate'],$value['cpc_average'],$value['cost'],$value['conversion'],$value['conversion_after_view'],$value['single_conversion_cost'],$value['conversion_rate']]);
+            */
+            $id = Data::insert([
+                [
+                    'name'=>$value['name'],'enabled'=>$value['enabled'],'type'=>$value['type'],'currency'=>$value['currency'],'click'=>$value['click'],'exposure'=>$value['exposure'],
+                    'click_rate'=>$value['click_rate'],'cpc_average'=>$value['cpc_average'],'cost'=>$value['cost'],'conversion'=>$value['conversion'],'conversion_after_view'=>$value['conversion_after_view'],
+                    'single_conversion_cost'=>$value['single_conversion_cost'],'conversion_rate'=>$value['conversion_rate']
+                
+                ]
+            ]);
+        }
+        #return response()->json(['data' => $params]);
+    }
+
     public function index(){
         $data = Data::all();
         return response()->json(['data' => $data]);

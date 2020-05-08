@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('v1/data', 'dataController@index');
 Route::post('/callback','dataController@show');
+Route::post('/Py','dataController@pyShow');
